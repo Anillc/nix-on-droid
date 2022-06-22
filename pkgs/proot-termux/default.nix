@@ -30,5 +30,6 @@ stdenv.mkDerivation {
   makeFlags = [ "-Csrc" "V=1" ];
   CFLAGS = [ "-O3" "-static" "-I../fake-ashmem" ];
   LDFLAGS = [ "-static" ];
+  preInstall = "${stdenv.cc.targetPrefix}strip src/proot";
   installPhase = "install -D -m 0755 src/proot $out/bin/${outputBinaryName}";
 }
