@@ -22,4 +22,4 @@ let
   };
 in
 
-loadNixpkgs { inherit crossSystem; }
+loadNixpkgs { system = "x86_64-linux"; inherit crossSystem; }

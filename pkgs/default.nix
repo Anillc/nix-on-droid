@@ -6,7 +6,7 @@ let
   nixDirectory = callPackage ./nix-directory.nix { };
   packageInfo = import "${nixDirectory}/nix-support/package-info.nix";
 
-  nixpkgs = import lib/load-nixpkgs.nix { };
+  nixpkgs = import lib/load-nixpkgs.nix { system = "x86_64-linux"; };
 
   modules = import ../modules {
     pkgs = nixpkgs;

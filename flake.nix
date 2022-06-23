@@ -42,5 +42,6 @@
           };
       apps.nix-on-droid.aarch64-linux = app;
       defaultApp.aarch64-linux = app;
+      packages.x86_64-linux = import ./pkgs {};
     };
 }
