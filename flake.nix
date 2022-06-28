@@ -43,5 +43,7 @@
       apps.nix-on-droid.aarch64-linux = app;
       defaultApp.aarch64-linux = app;
       packages.x86_64-linux = import ./pkgs {};
-    };
+    } // flake-utils.lib.eachDefaultSystem (system: {
+      packages = import ./pkgs { system = "x86_64-linux"; };
+    });
 }

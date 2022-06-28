@@ -1,12 +1,12 @@
 # Copyright (c) 2019-2021, see AUTHORS. Licensed under MIT License, see LICENSE.
 
-{ arch ? "aarch64", nixOnDroidChannelURL ? null, nixpkgsChannelURL ? null }:
+{ arch ? "aarch64", nixOnDroidChannelURL ? null, nixpkgsChannelURL ? null, system }:
 
 let
   nixDirectory = callPackage ./nix-directory.nix { };
   packageInfo = import "${nixDirectory}/nix-support/package-info.nix";
 
-  nixpkgs = import lib/load-nixpkgs.nix { system = "x86_64-linux"; };
+  nixpkgs = import lib/load-nixpkgs.nix { inherit system; };
 
   modules = import ../modules {
     pkgs = nixpkgs;
@@ -43,8 +43,8 @@ let
     inherit nixDirectory packageInfo;
     bootstrap = callPackage ./bootstrap.nix { };
     bootstrapZip = callPackage ./bootstrap-zip.nix { };
-    prootTermux = callPackage ./cross-compiling/proot-termux.nix { };
-    tallocStatic = callPackage ./cross-compiling/talloc-static.nix { };
+    prootTermux = callPackage ./cross-compiling/proot-termux.nix { inherit system; };
+    tallocStatic = callPackage ./cross-compiling/talloc-static.nix { inherit system; };
   };
 in
 

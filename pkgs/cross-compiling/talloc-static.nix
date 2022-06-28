@@ -1,9 +1,9 @@
 # Copyright (c) 2019-2021, see AUTHORS. Licensed under MIT License, see LICENSE.
 
-{ callPackage, python3, wafHook }:
+{ callPackage, python3, wafHook, system }:
 
 let
-  pkgsCross = callPackage ./cross-pkgs.nix { };
+  pkgsCross = callPackage ./cross-pkgs.nix { inherit system; };
 in
 
 pkgsCross.talloc.overrideAttrs (_: rec {

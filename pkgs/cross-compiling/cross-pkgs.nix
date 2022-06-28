@@ -1,6 +1,6 @@
 # Copyright (c) 2019-2021, see AUTHORS. Licensed under MIT License, see LICENSE.
 
-{ config, path }:
+{ config, path, system }:
 
 let
   loadNixpkgs = import ../lib/load-nixpkgs.nix;
@@ -22,4 +22,4 @@ let
   };
 in
 
-loadNixpkgs { system = "x86_64-linux"; inherit crossSystem; }
+loadNixpkgs { inherit system crossSystem; }
